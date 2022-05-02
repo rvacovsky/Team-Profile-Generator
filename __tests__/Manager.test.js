@@ -1,12 +1,20 @@
 const Manager = require('../lib/Manager.js');
 
-test('creates a Manager object', () => {
-  const employee = new Manager('Roger');
-
-  expect(employee.name).toBe('Roger');
-  expect(employee.id).toEqual(expect.any(Number));
-  expect(employee.email).toBe('test@test.com');
-  expect(employee.officeNumber).toEqual(expect.any(Number));
-
-  expect(employee.profile).toEqual(expect.arrayContaining([expect.any(Object)]));
+test('identifies office number field in object', () => {
+  const testOfficeNumber = "340";
+  const employee = new Manager('Roger', "64", "test@test.com", testOfficeNumber);
+  expect(employee.officeNumber).toBe(testOfficeNumber);
 });
+
+test('using getRole to retireve role', () => {
+  const testRole = 'Manager';
+  const employee = new Manager('Roger', "64", "test@test.com", "340");
+  expect(employee.getRole()).toBe(testRole);
+});
+
+test('using getOfficeNUmber function to gather value', () => {
+  const testOfficeNumber = "340";
+  const employee = new Manager('Roger', "64", "test@test.com", testOfficeNumber);
+  expect(employee.getOfficeNumber()).toBe(testOfficeNumber);
+});
+

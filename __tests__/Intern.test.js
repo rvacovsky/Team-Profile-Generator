@@ -1,12 +1,19 @@
 const Intern = require('../lib/Intern.js');
 
-test('creates an Intern object', () => {
-  const employee = new Intern('');
+test('identifies school field in object', () => {
+  const testSchool = 'University of Richmond';
+  const employee = new Intern('Roger', "64", "test@test.com", testSchool);
+  expect(employee.school).toBe(testSchool);
+});
 
-  expect(employee.name).toBe('');
-  expect(employee.id).toEqual(expect.any(Number));
-  expect(employee.email).toBe('');
-  expect(employee.school).toBe('');
+test('using getRole to retireve role', () => {
+  const testRole = 'Intern';
+  const employee = new Intern('Roger', "64", "test@test.com", 'University of Richmond');
+  expect(employee.getRole()).toBe(testRole);
+});
 
-  expect(employee.profile).toEqual(expect.arrayContaining([expect.any(Object)]));
+test('using getSchool function to gather value', () => {
+  const testSchool = 'University of Richmond';
+  const employee = new Intern('Roger', "64", "test@test.com", testSchool);
+  expect(employee.getSchool()).toBe(testSchool);
 });

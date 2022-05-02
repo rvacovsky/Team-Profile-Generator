@@ -1,12 +1,19 @@
 const Engineer = require('../lib/Engineer.js');
 
-test('creates an Engineer object', () => {
-  const employee = new Engineer('');
+test('identifies github field in object', () => {
+  const testGitHub = 'rvacovsky';
+  const employee = new Engineer('Roger', "64", "test@test.com", testGitHub);
+  expect(employee.github).toBe(testGitHub);
+});
 
-  expect(employee.name).toBe('');
-  expect(employee.id).toEqual(expect.any(Number));
-  expect(employee.email).toBe('');
-  expect(employee.github).toBe('');
+test('using getRole to retireve role', () => {
+  const testRole = 'Engineer';
+  const employee = new Engineer('Roger', "64", "test@test.com", 'rvacovsky');
+  expect(employee.getRole()).toBe(testRole);
+});
 
-  expect(employee.profile).toEqual(expect.arrayContaining([expect.any(Object)]));
+test('using getGithub function to gather value', () => {
+  const testGithub = 'rvacovsky';
+  const employee = new Engineer('Roger', "64", "test@test.com", testGithub);
+  expect(employee.getGithub()).toBe(testGithub);
 });
