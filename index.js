@@ -1,13 +1,12 @@
 const fs = require("fs");
 const inquirer = require('inquirer');
-const generatePage = require('./src/template');
-const { writeFile, copyFile } = require('./src/generateHTML');
+const generateHTML = require('./src/generateHTML');
 
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-const team = [];
+let team = [];
 
 // Manager should enter their own information first.
 // Depending on selection manager is taken to appropriate function
@@ -59,12 +58,8 @@ const generateManager = () => {
         message: "What is your office number?",
         }
     ])
-    .then(function (manager) {
-        const name = manager.name
-        const id = manager.id
-        const email = manager.email
-        const officeNumber = manager.officeNaumber
-        const teammate = new Manager(name, id, email, officeNumber);
+    .then((answers) => {
+        const teammate = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         team.push(teammate)
         determineRole();
     });
@@ -95,12 +90,8 @@ function generateEngineer() {
         message: "What is the Engineer's GitHub username?",
         }
     ])
-    .then(function (employee) {
-        const name = employee.name
-        const id = employee.id
-        const email = employee.email
-        const github = employee.github
-        const teammate = new Engineer(name, id, email, github)
+    .then((answers) => {
+        const teammate = new Engineer(answers.name, answers.id, answers.email, answers.github)
         team.push(teammate)
         promptEmployee();
     })
@@ -130,12 +121,8 @@ function generateIntern() {
             message: "What school did the Intern attend?",
         }
     ])
-    .then(function (employee) {
-        const name = employee.name
-        const id = employee.id
-        const email = employee.email
-        const school = employee.school
-        const teammate = new Intern(name, id, email, school)
+    .then((answers) => {
+        const teammate = new Intern(answers.name, answers.id, answers.email, answers.school)
         team.push(teammate)
         promptEmployee();
     })
@@ -151,13 +138,26 @@ function promptEmployee() {
         },
     ])
     .then((answer) => {
-      if (answer.confirmAddEmployee) {
+        if (answer.confirmAddEmployee) {
         determineRole();
       } else {
-        return team;
+        teamRoster(team);
       }
     });
 };
+
+function teamRoster(team){
+    const html = generateHTML(team);
+    console.log(team);
+    fs.writeFile("./dist/index.html", html, "utf8", (err) => {
+        if (err) {
+           return console.log(err);
+           } else {
+           console.log("Your team has been created!");
+           console.log(html);
+        }
+    })
+}
 
 
 // Prompts manager to enter their information
@@ -165,6 +165,7 @@ function init() {
     console.log("Welcome Manager! Let's enter your information first");
     determineRole();
 }
+
 // initializes app
 init();
 
