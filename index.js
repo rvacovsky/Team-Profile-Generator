@@ -1,6 +1,8 @@
 const fs = require("fs");
 const inquirer = require('inquirer');
 const generateHTML = require('./src/generateHTML');
+const util = require('util');
+const writeFileAsync = util.promisify(fs.writeFile);
 
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -149,7 +151,8 @@ function promptEmployee() {
 function teamRoster(team){
     const html = generateHTML(team);
     console.log(team);
-    fs.writeFile("./dist/index.html", html, "utf8", (err) => {
+    console.log(JSON.stringify(team))
+    writeFileAsync("./dist/index.html", html, "utf8", (err) => {
         if (err) {
            return console.log(err);
            } else {

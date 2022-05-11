@@ -1,85 +1,75 @@
 
-  const getManager = data => {
+  const getManager = Manager => {
     return `
-        <div id=Manager class="g-col-6 g-col-md-4">
-            <p>Name: ${data.name}</p>
-            <p>ID: ${data.id}</p>
-            <p>Email: <a href="mailto:${data.email}>${data.email}</a></p>
-            <p>Office Number: ${data.officeNumber}</p>
+        <div id="Manager" class="g-col-6 g-col-md-4">
+            <h3>${Manager}</h3>
+            <p>Name: ${this.name}</p>
+            <p>ID: ${this.id}</p>
+            <p>Email: <a href="mailto:${this.email}">${this.email}</a></p>
+            <p>Office Number: ${this.officeNumber}</p>
         </div>
         `;
   };
 
 
-  const getEngineer = data => { 
+  const getEngineer = Engineer => { 
     return `
-        <div id=Engineer class="g-col-6 g-col-md-4">
-            <p>Name: ${data.name}</p>
-            <p>ID: ${data.id}</p>
-            <p>Email: <a href="mailto:${data.email}>${data.email}</a></p>
-            <p>GitHub: ${data.github}</p>
+        <div id="Engineer" class="g-col-6 g-col-md-4">
+            <h3>${Engineer}</h3>
+            <p>Name: ${this.name}</p>
+            <p>ID: ${this.id}</p>
+            <p>Email: <a href="mailto:${this.email}">${this.email}</a></p>
+            <p>GitHub: ${this.github}</p>
         </div>
         `
   };
 
-  const getIntern = data => {
+  const getIntern = Intern => {
     return `
-        <div id=Intern class="g-col-6 g-col-md-4">
-            <p>Name: ${data.name}</p>
-            <p>ID: ${data.id}</p>
-            <p>Email: <a href="mailto:${data.email}>${data.email}</a></p>
-            <p>Alma Mater: ${data.school}</p>
+        <div id="Intern" class="g-col-6 g-col-md-4">
+            <h3>${Intern}</h3>    
+            <p>Name: ${this.name}</p>
+            <p>ID: ${this.id}</p>
+            <p>Email: <a href="mailto:${this.email}">${this.email}</a></p>
+            <p>Alma Mater: ${this.school}</p>
         </div>
     
       `
   };
 
-  const getHTML = team => {
-    let staffList = [];
-    for (let i = 0; i < team.length; i++) {
-      const role = team[i].getRole();
-      if (role === "Manager") {
-        staffList.push(getManager(team[i]));
-      }
-      if (role === "Engineer") {
-        staffList.push(getEngineer(team[i]));
-      }
-      if (role === "Intern") {
-        staffList.push(getIntern(team[i]));
-      }
-    }
-    const teamRoster = staffList.join('');
-    return generateHTML(teamRoster);
-  }
+const generateHTML = () => {
+  return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link href="../dist/style.css" rel="stylesheet">
+      <title>Team Profiles</title>
+  </head>
+  <header>
+      <h2>My Team</h2>
+  </header>
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            ${getManager()}
+            ${getEngineer()}
+            ${getIntern()}
+          </div>
+        </div>  
+      </div>
+  </body>
+      
+  <script src="./src/generateHTML.js"></script>
+  </html>
+  `;
+
+};
+
 
   
-  const generateHTML = teamRoster => {
-    return `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="../dist/style.css" rel="stylesheet">
-        <title>Team Profiles</title>
-    </head>
-    <header>
-        <h2>My Team</h2>
-    </header>
-    <body>
-        <div class="grid">
-        ${teamRoster}
-        </div>
-        </body>
-        
-        <script src="./src/generateHTML.js"></script>
-        </html>
-        `;
-  
-  };
 
-getHTML();
-  
-
-module.exports = getHTML;
+module.exports = generateHTML;

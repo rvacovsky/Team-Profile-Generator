@@ -5,7 +5,7 @@ header {
     color: white;
 }
 
-.grid {
+.container {
    text-align: center;
    flex-wrap: wrap; 
    padding: 20px;
