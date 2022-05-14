@@ -7,20 +7,24 @@ header {
 
 .container {
    text-align: center;
-   flex-wrap: wrap; 
-   padding: 20px;
-   margin: 10px;
-   border-radius: 5px;
+   justify-content: space-between; 
 }
 
-.Manager {
-    color: red;
+.col {
+    padding: 20px;
+    margin: 10px;
+    border-style: outset;
+    border-radius: 5px;
 }
 
-.Engineer {
-    color: blue;
+#Manager {
+    border-color: red;
 }
 
-.Intern {
-    color: green;
+#Engineer {
+    border-color: blue;
+}
+
+#Intern {
+    border-color: green;
 }

@@ -8,7 +8,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-let team = [];
+var team = [];
 
 // Manager should enter their own information first.
 // Depending on selection manager is taken to appropriate function
@@ -61,8 +61,8 @@ const generateManager = () => {
         }
     ])
     .then((answers) => {
-        const teammate = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        team.push(teammate)
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        team.push(manager)
         determineRole();
     });
     
@@ -93,8 +93,8 @@ function generateEngineer() {
         }
     ])
     .then((answers) => {
-        const teammate = new Engineer(answers.name, answers.id, answers.email, answers.github)
-        team.push(teammate)
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+        team.push(engineer)
         promptEmployee();
     })
 }
@@ -124,8 +124,8 @@ function generateIntern() {
         }
     ])
     .then((answers) => {
-        const teammate = new Intern(answers.name, answers.id, answers.email, answers.school)
-        team.push(teammate)
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+        team.push(intern)
         promptEmployee();
     })
 }
