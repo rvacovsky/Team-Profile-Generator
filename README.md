@@ -44,3 +44,12 @@ THEN I am prompted to enter the intern’s name, ID, email, and school, and I am
 WHEN I decide to finish building my team
 
 THEN I exit the application, and the HTML is generated
+
+## Link to Google Drive with Demo video
+
+https://drive.google.com/file/d/1Id0xKW_TCeFPXreuCxMSPyYrYs1pf1Yb/view
+
+## Team Profile Generated!
+
+![image](https://user-images.githubusercontent.com/98611195/168450458-59bcbb6d-2f0b-442d-bd54-a4e680536586.png)
+
